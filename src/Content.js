@@ -15,7 +15,7 @@ const Container = styled.div`
   top: 33px;
   width: 500px;
   height: calc(100% - 33px);
-  color: black;
+  color: white;
 `;
 
 export default Content;
