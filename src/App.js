@@ -1,10 +1,32 @@
 import React from "react";
 import styled from "styled-components";
+import Content from "./Content";
+
 
 class App extends React.Component {
-  render() {
-    return <Container></Container>;
+  state = {
+    query: ""
+  };
+    render() {
+    return (
+      <Container query={this.state.query}>
+        <input
+          placeholder="테마를 입력하세요"
+          onKeyPress={this.handleInputKeyPress}
+        />
+        <Content />
+      </Container>
+    );
   }
+
+  handleInputKeyPress = event => {
+    if (event.key === "Enter") {
+      this.setState({
+        query: event.target.value
+      });
+      event.target.value = "";
+    }
+  };
 }
 
 const Container = styled.div`
@@ -19,7 +41,8 @@ const Container = styled.div`
       rgba(20, 20, 20, 0.7) 70%,
       rgba(20, 20, 20, 1)
     ),
-    url(https://source.unsplash.com/random/1920x1080);
+    url(https://source.unsplash.com/random/1920x1080?${props => props.query});
   background-size: cover;
 `;
+
 export default App;
